@@ -1,0 +1,17 @@
+.maps-pro-content{
+	min-width:100px;
+	min-height:15px;
+	color:#333
+}
+.module-maps-pro img:not(.gm-fullscreen-control){
+	max-width:inherit!important;
+	vertical-align:baseline;
+	margin-right:5px
+}
+.module-maps-pro .maps-pro-canvas{
+	max-width:100%!important
+}
+.module-maps-pro button{
+	min-width:auto;
+	border-radius:0
+}
