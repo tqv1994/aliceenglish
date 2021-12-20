@@ -1,3 +1,18 @@
 /* Themify Customize Styling */
 #site-logo {	margin: auto; 
 }
+#footerwrap {	background: none;
+	background-color: #a35105; 
+}
+#footer a {	
+	color: #ffffff; 
+}
+#footer .footer-widgets {	
+	color: #ffffff; 
+}
+#footer .footer-widgets .widgettitle {	
+	color: #ffffff; 
+}
+
+/* Themify Custom CSS */
+.module-icon span{max-width:100%;}

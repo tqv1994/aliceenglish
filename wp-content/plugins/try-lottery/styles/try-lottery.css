@@ -1,0 +1,532 @@
+/*Ä‘á»‹nh dáº¡ng mĂ u chá»¯, font chá»¯ chung*/
+
+.color-green {
+    color: #00918D;
+}
+
+.color-red {
+    color: #EB4E41;
+}
+
+.color-h2 {
+    color: #C1272D;
+}
+
+.color-black {
+    color: #000;
+}
+
+.color-r {
+    color: #ff0000!important;
+}
+
+.special-prize-lg {
+    color: #FF0000;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.number-black-bold,
+.number-black-bold-mb {
+    color: #000;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.special-prize-mn {
+    color: #FF0000;
+    font-size: 17px;
+    font-weight: bold;
+}
+.font-14 {
+    font-size: 14px;
+}
+
+.font-w-14 {
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+/*Ä‘á»‹nh dáº¡ng table chung*/
+
+.table-striped td:first-child {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+    font-weight: lighter;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+    width: 12%;
+}
+
+table.table tbody tr td,
+table.table thead tr th {
+    padding: 3px;
+    border: 1px solid #ccc;
+}
+
+table.table-xsmb tbody tr td,
+table.table-xsmb thead tr th {
+    padding: 0px;
+}
+
+table.table-xsmn tbody tr td,
+table.table-xsmn thead tr th {
+    font-size: 14px;
+}
+
+table.table-xsmn span.col-xs-12 {
+    padding: 0;
+    height: 25px;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    border-top: none;
+}
+
+table.table.table-loto tbody tr th,
+table.table.table-loto tbody tr td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+.table-striped>thead {
+    background-color: #f2f2f2;
+}
+
+.bg-tr,
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #f2f2f2;
+}
+
+.bg-td,
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fff!important;
+}
+
+.table {
+    margin-top: -5px;
+    margin-bottom: 0;
+    border: 1px solid #ccc
+}
+
+.table-xsmb,
+.table-number {
+    width: 100%;
+}
+
+.table-xsmn {
+    width: 100%;
+}
+
+table.table thead tr th,
+table.table-xsmn tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-number .bg-tr td:hover {
+    background-color: #00918D;
+}
+
+.radio-stick {
+    font-size: 16px;
+    display: inline-table;
+    text-align: center;
+    margin: 0 23px;
+}
+
+.radio-stick input {
+    margin: 0;
+}
+
+.radio-stick label {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    padding-left: 3px;
+}
+
+
+/* main */
+
+.block {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 5px 5px 0;
+}
+
+.title-header {
+    min-height: 60px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 23px;
+    margin: 5px 0;
+    padding: 7px 10px;
+    background-color: #F9CFCF;
+}
+
+.title-header a {
+    text-decoration: underline;
+}
+
+.img-header {
+    text-align: center;
+}
+
+.img-header img {
+    width: 308px;
+    height: 181px;
+}
+
+.title-img {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.title-img a {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
+.list-content {
+    margin-top: -10px;
+}
+
+.item {
+    padding: 20px 5px;
+    min-height: 107px;
+    border-bottom: 1px solid #ccc;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item-img {
+    width: 120px;
+    margin-right: 10px;
+    float: left;
+}
+
+.item-img img {
+    height: 70px;
+    width: 100%;
+}
+
+.item-content {
+    margin-left: 0px;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.title-item a {
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+}
+
+.content-dd {
+    padding: 5px 10px;
+}
+
+.click-test {
+    height: 46px;
+    border-radius: 8px;
+    margin: 5px;
+    background-color: #EB4E41;
+    text-align: center;
+}
+
+.click-test a,
+.click-test a:hover {
+    line-height: 46px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.mar-top {
+    margin-top: -1px;
+}
+
+table tr span div{
+    display: inline;
+}
+
+/*KQXS xsmb*/
+
+span.number-black-bold-mb,
+span.special-prize-lg {
+    /* padding: 3px; */
+    display: block;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 38px;
+    line-height: 38px;
+}
+
+.no-bor-b {
+    border-bottom: none!important;
+}
+
+.no-bor-r {
+    border-right: none!important;
+}
+
+.no-bor {
+    border-bottom: none!important;
+    border-right: none!important;
+}
+
+
+/*KQXS xsmn*/
+.table-xsmn a {
+    color: #000;
+}
+
+.img-loading {
+    width: 22px;
+}
+
+
+/*danh sĂ¡ch cĂ¡c link*/
+
+.list-link {
+    margin: 5px;
+    background-color: #E6E6E6;
+}
+
+.list-link ul {
+    border: 1px solid #fff;
+}
+
+.list-link li {
+    padding: 15px 10px;
+    border-top: 1px solid #fff;
+    font-size: 16px;
+    color: #000;
+}
+
+.list-link li:first-child {
+    border-top: none;
+}
+
+.list-link a {
+    color: #FF0000;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+/*/danh sĂ¡ch cĂ¡c link*/
+
+
+/* Quay thá»­ káº¿t quáº£ xá»• sá»‘ 3 miá»n online */
+
+.title-info {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    padding-top: 0;
+}
+
+
+/* tin quay thu chi tiet */
+
+.title-h1 {
+    color: #00918D;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 40px;
+    text-align: left;
+    line-height: 22px;
+    margin: 5px 0;
+    padding: 7px 10px;
+}
+
+
+/*báº£ng loto*/
+
+.loto-table header {
+    margin-top: 5px;
+    position: relative;
+    padding: 3px 10px;
+    background-color: #E8E8E8;
+}
+
+.loto-table .title-loto {
+    font-size: 16px;
+    color: #120cf4;
+}
+
+.loto-table header .down-icon {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    font-size: 20px;
+}
+
+.view-loto {
+    margin-top: 5px;
+}
+
+.view-loto p {
+    margin: 10px;
+}
+
+.loto-province:first-child {
+    display: -webkit-box;
+    margin-top: -5px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+
+.loto-province {
+    display: -webkit-box;
+    margin-top: 0px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.view-loto .table-loto {
+    margin-top: 0;
+}
+
+table.table-loto th {
+    text-align: left;
+    color: #F44336;
+}
+
+table.table-loto th:first-child {
+    text-align: center;
+    color: #F44336;
+    border-right: none;
+}
+
+table.table-loto td:first-child {
+    font-weight: bold;
+}
+
+table.table-loto td:first-child,
+table.table-loto {
+    font-size: 17px;
+}
+
+.chevron-rolate {
+    transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+}
+
+
+/*/báº£ng loto*/
+
+
+/*tin liĂªn quan*/
+
+.bg-color {
+    background-color: #F2F2F2;
+}
+
+.title-news {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+ul.link-news {
+    margin-top: -8px;
+}
+
+.link-news li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.link-news li:last-child {
+    border-bottom: none;
+}
+
+.link-news li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.bg-color .title {
+    font-weight: 600;
+}
+
+.title-info a,
+.content-dd a {
+    color: #C1272D;
+    text-decoration: underline;
+}
+
+.font-w {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+/*button xem thĂªm*/
+
+.bg-viewmore {
+    margin: 5px 5px 0;
+}
+
+.btn-default {
+    background-color: #f2f2f2;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .125);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.title-result {
+    min-height: 33px;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+    line-height: 28px;
+    margin: 5px 0;
+    padding: 0 10px;
+}
+
+.title-result a,
+.title-result a:hover {
+    text-decoration: none;
+    color: #00918D;
+}
+
+
+/*/tin liĂªn quan*/
+
+.col2{
+    width:40%;
+}
+.col3{
+    width: 26.6%;
+}
+.col4{
+    width: 20%;
+}
+/*/ tin quay thu chi tiet */
