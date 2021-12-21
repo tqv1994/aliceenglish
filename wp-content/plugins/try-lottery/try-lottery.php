@@ -30,10 +30,21 @@ function try_lottery_styles() {
 add_action( 'wp_enqueue_scripts', 'try_lottery_styles' );
 // Khai báo js
 function try_lottery_scripts(){
-    wp_enqueue_script('try-lottery-bootstrap',TRY_LOTTERY_DIR_ASSETS_URL.'/libs/bootstrap/bootstrap.min.js');
+//    wp_enqueue_script('try-lottery-bootstrap',TRY_LOTTERY_DIR_ASSETS_URL.'/libs/bootstrap/bootstrap.min.js');
     wp_enqueue_script('try-lottery-main',TRY_LOTTERY_DIR_SCRIPTS_URL.'/try-lottery.js');
     wp_enqueue_script('try-lottery-custom',TRY_LOTTERY_DIR_SCRIPTS_URL.'/custom.js','','4.9');
 }
-add_action('wp_enqueue_scripts','try_lottery_scripts');
+add_action('wp_enqueue_scripts','try_lottery_scripts',20);
 
 include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_bac.php');
+include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_nam.php');
+include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_trung.php');
+
+add_action('wp_head','add_scripts',0);
+function add_scripts(){
+    ?>
+    <script type="text/javascript">
+        var tryDirAssets = '<?=TRY_LOTTERY_DIR_ASSETS_URL; ?>';
+    </script>
+    <?php
+}

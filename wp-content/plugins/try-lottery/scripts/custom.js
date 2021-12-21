@@ -1,6 +1,21 @@
 jQuery(document).ready(function($){
     if($('#bangkq_xsmb').length > 0){
         xsdp.RunRandomXSMB();
+        $('#bangkq_xsmb').on('click','#turn',function(){
+           xsdp.RunRandomXSMB();
+        });
+    }
+    if($('#bangkq_xsmn').length > 0){
+        xsdp.RunRandomXSMN();
+        $('#bangkq_xsmn').on('click','#turn',function(){
+            xsdp.RunRandomXSMN();
+        });
+    }
+    if($('#bangkq_xsmt').length > 0){
+        xsdp.RunRandomXSMT();
+        $('#bangkq_xsmt').on('click','#turn',function(){
+            xsdp.RunRandomXSMT();
+        });
     }
     $("body").find(" #hover-number td").mouseout(function () {
         var id = $(this).parent().attr("data");

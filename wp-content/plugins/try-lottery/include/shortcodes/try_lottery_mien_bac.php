@@ -9,15 +9,13 @@ function handleQuayThuXoSoMienBac($args){
         'G.6' => [19,20,21],
         'G.7' => [22,23,24,25]
     ];
-    add_action( 'wp_print_scripts', 'my_head_scripts',99999999 );
-
     ob_start(); ?>
-    <div class="click-test">
-        <a href="javascript:void(0)" id="turn"><span class="change-color">NHẤP QUAY THỬ XSMB</span></a>
-    </div>
     <section id="bangkq_xsmb">
+        <div class="click-test">
+            <a href="javascript:void(0)" id="turn"><span class="change-color">NHẤP QUAY THỬ XSMB</span></a>
+        </div>
         <header>
-            <h2 class="title-header">Kết quả quay thử xổ số Miền Bắc</h2>
+            <h2 class="title-header color-h2">Kết quả quay thử xổ số Miền Bắc <span class="color-black"> <?=date('d/m/Y')?></span></h2>
         </header>
         <div class="block-main-content">
             <table class="table table-striped table-xsmb" id="table-xsmb">

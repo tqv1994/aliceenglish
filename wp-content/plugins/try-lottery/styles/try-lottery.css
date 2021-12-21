@@ -300,37 +300,11 @@ span.special-prize-lg {
     width: 22px;
 }
 
-
-/*danh sĂ¡ch cĂ¡c link*/
-
-.list-link {
-    margin: 5px;
-    background-color: #E6E6E6;
+.table-xsmb mark ,.table-xsmn mark{
+    padding: 0;
+    background-color: #00918D;
+    color: #fff;
 }
-
-.list-link ul {
-    border: 1px solid #fff;
-}
-
-.list-link li {
-    padding: 15px 10px;
-    border-top: 1px solid #fff;
-    font-size: 16px;
-    color: #000;
-}
-
-.list-link li:first-child {
-    border-top: none;
-}
-
-.list-link a {
-    color: #FF0000;
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-
-/*/danh sĂ¡ch cĂ¡c link*/
 
 
 /* Quay thá»­ káº¿t quáº£ xá»• sá»‘ 3 miá»n online */

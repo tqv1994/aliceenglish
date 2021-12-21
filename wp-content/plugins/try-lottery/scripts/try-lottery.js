@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     xsdp.init();
 });
 var xsdpconfig = {
-    rootPath: '/',
+    rootPath: tryDirAssets+'/',
 }
 var isrunning = false;
 var arrHead = new Array('', '', '', '', '', '', '', '', '', '');
@@ -39,133 +39,6 @@ var xsdp = {
             });
         });
     },
-    ajaxEvents: {
-        OnComplete: function () {
-            jQuery(".ajaxLoading").html("");
-            jQuery('.btn.btn-red').prop('disabled', false).css('cursor', 'default');
-        },
-        OnSuccess: function (data, status, xhr) {
-            if (status == 'success') {
-                if (data.jsonFlag == true) {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, null, function () {
-                            window.location.href = xsdpconfig.rootPath + 'profile.html';
-                        });
-                    }
-                } else {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, null, null);
-                    }
-                }
-            } else {
-                alert('QuĂ½ khĂ¡ch vui lĂ²ng thá»­ láº¡i sau.');
-            }
-        },
-        OnFailure: function (data) {
-            jQuery(".ajaxLoading").html("");
-            jQuery('.btn.btn-red').prop('disabled', false).css('cursor', 'default');
-        },
-        LoginOnBegin: function () {
-            jQuery(".ajaxLoadingLogin").html('<image src="../assets/images/Loading_icon.gif" alt="Loading..." />');
-            jQuery('.btn-login').prop('disabled', true).css('cursor', 'wait');
-        },
-        LoginOnSuccess: function (data, status, xhr) {
-            if (status == 'success') {
-                if (data.jsonFlag == true) {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', 'ÄÄƒng nháº­p tĂ i khoáº£n thĂ nh cĂ´ng', null, null, function () {
-                            window.location.href = data.jsonRetval;
-                        });
-                    }
-                } else {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, null, null);
-                    }
-                }
-            } else {
-                alert('QuĂ½ khĂ¡ch vui lĂ²ng thá»­ láº¡i sau.');
-            }
-            jQuery(".ajaxLoadingLogin").html('');
-        },
-        RegisterOnBegin: function () {
-            jQuery(".ajaxLoadingRegister").html('<image src="../assets/images/Loading_icon.gif" alt="Loading..." />');
-            jQuery('.btn-register').prop('disabled', true).css('cursor', 'wait');
-        },
-        RegisterOnSuccess: function (data, status, xhr) {
-            if (status == 'success') {
-                if (data.jsonFlag == true) {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', 'ÄÄƒng kĂ½ tĂ i khoáº£n thĂ nh cĂ´ng', null, null, function () {
-                            window.location.href = xsdpconfig.rootPath + 'dang-nhap.html';
-                        });
-                    }
-                } else {
-                    if (data.jsonRetval.length > 0) {
-                        xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, null, null);
-                    }
-                }
-            } else {
-                alert('QuĂ½ khĂ¡ch vui lĂ²ng thá»­ láº¡i sau.');
-            }
-            jQuery(".ajaxLoadingRegister").html('');
-        },
-        RetrivePasswordOnBegin: function () {
-            jQuery(".ajaxLoadingRetrivePassword").html('<image src="../assets/images/Loading_icon.gif" alt="Loading..." />');
-            jQuery('.btn-retrive-password').prop('disabled', true).css('cursor', 'wait');
-        },
-        RetrivePasswordOnSuccess: function (data, status, xhr) {
-            if (status == 'success') {
-                if (data.jsonRetval.length > 0) {
-                    xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, 300, null);
-                }
-            } else {
-                alert('QuĂ½ khĂ¡ch vui lĂ²ng thá»­ láº¡i sau.');
-            }
-            jQuery(".ajaxLoadingRetrivePassword").html('');
-        },
-        NewsletterEmailOnBegin: function () {
-            jQuery(".ajaxLoadingNewsletterEmail").html('<image src="../assets/images/Loading_icon.gif" alt="Loading..." />');
-            jQuery('.btn-newsletter-email').prop('disabled', true).css('cursor', 'wait');
-        },
-        NewsletterEmailOnComplete: function () {
-            jQuery(".ajaxLoadingNewsletterEmail").html("");
-            jQuery('.btn-newsletter-email').prop('disabled', false).css('cursor', 'default');
-        },
-        NewsletterEmailOnSuccess: function (data, status, xhr) {
-            if (status == 'success') {
-                if (data.jsonRetval.length > 0) {
-                    xsdp.dialog(null, 'ThĂ´ng bĂ¡o', data.jsonRetval, null, 300, null);
-                }
-            } else {
-                alert('QuĂ½ khĂ¡ch vui lĂ²ng thá»­ láº¡i sau.');
-            }
-            jQuery(".ajaxLoadingNewsletterEmail").html('');
-        },
-        NewsletterEmailOnFailure: function () {
-            jQuery(".ajaxLoadingNewsletterEmail").html("");
-            jQuery('.btn-newsletter-email').prop('disabled', false).css('cursor', 'default');
-        }
-    },
-    articles: {
-        variables: {
-            page: 1
-        },
-        loadmore: function (url, cateId) {
-            var dataGetter = {
-                'catId': cateId,
-                'pageIndex': xsdp.articles.variables.page
-            };
-            var lotterymoreResult = jQuery('.loadmoreResult');
-            jQuery.xsdpAjax(url, 'Get', dataGetter, function (resp) {
-                if (resp.length > 0) {
-                    xsdp.articles.variables.page++;
-                    lotterymoreResult.append(resp);
-                } else {
-                    jQuery('.bg-viewmore').hide();
-                }
-            });
-        }
-    },
     getRandomString: function (len) {
         var number = '';
         for (var i = 0; i < len; i++) {
@@ -178,7 +51,7 @@ var xsdp = {
         var retVal = '<table class="table table-striped table-xsmb" id="turn-xsmb">' +
             '<tbody>' +
             '<tr>' +
-            '<td>ÄB</td>' +
+            '<td>G.ĐB</td>' +
             ' <td class="text-center" id="mb_prizeDB">' +
             ' <span class="special-prize-lg no-bor">' +
             '<img src="/assets/images/load.gif" class="img-loading hide-img" alt=""/>' +
@@ -469,7 +342,7 @@ var xsdp = {
         arrRange.push(xsdp.getRandomString(5));
         //chuyen tat ca ket qua ve anh gif
         for (var i = 0; i < arrRange.length; i++) {
-            jQuery('#mb_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'assets/images/load.gif" class="img-loading hide-img" alt=""/>');
+            jQuery('#mb_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
         //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
         for (var i = 0; i < arrRange.length; i++) {
@@ -508,7 +381,7 @@ var xsdp = {
     RunRandomXSMN: function () {
         isrunning = true;
         xsdp.goToByScroll('bangkq_xsmn');
-        jQuery('#turn').html('ÄANG QUAY THá»¬ XSMN' + '<img class="btn-loading" src="' + xsdpconfig.rootPath + 'assets/images/loading.gif"/>');
+        jQuery('#turn').html('NHẤP QUAY THỬ XSMN');
         var conveniancecount = jQuery("span[id*='mn_prize_']").length;
         console.log(conveniancecount);
         var numberprovince = conveniancecount / 18;
@@ -552,7 +425,7 @@ var xsdp = {
         }
         //chuyen tat ca ket qua ve anh gif
         for (var i = 0; i < arrRange.length; i++) {
-            jQuery('#mn_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'assets/images/load.gif" class="img-loading hide-img" alt=""/>');
+            jQuery('#mn_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
         //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
         for (var i = 0; i < arrRange.length; i++) {
@@ -591,7 +464,7 @@ var xsdp = {
     RunRandomXSMT: function () {
         isrunning = true;
         xsdp.goToByScroll('bangkq_xsmt');
-        jQuery('#turn').html('ÄANG QUAY THá»¬ XSMT' + '<img class="btn-loading" src="' + xsdpconfig.rootPath + 'assets/images/loading.gif"/>');
+        jQuery('#turn').html('NHẤP QUAY THỬ XSMT');
         var conveniancecount = jQuery("span[id*='mt_prize_']").length;
         var numberprovince = conveniancecount / 18;
         var animationTimer = null;
@@ -634,7 +507,7 @@ var xsdp = {
         }
         //chuyen tat ca ket qua ve anh gif
         for (var i = 0; i < arrRange.length; i++) {
-            jQuery('#mt_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'assets/images/load.gif" class="img-loading hide-img" alt=""/>');
+            jQuery('#mt_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
         //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
         for (var i = 0; i < arrRange.length; i++) {
@@ -678,7 +551,7 @@ var xsdp = {
         var day = d.getDate();
         var datetimenow = (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + d.getFullYear();
         jQuery('#dateqttd').html(' ngĂ y ' + datetimenow);
-        jQuery('#turn').html('ÄANG QUAY THá»¬ XS' + lotteryCode + ' <img class="btn-loading" src="' + xsdpconfig.rootPath + 'assets/images/loading.gif"/>');
+        jQuery('#turn').html('NHẤP QUAY THỬ XS' + lotteryCode + ' <img class="btn-loading" src="' + xsdpconfig.rootPath + 'images/loading.gif"/>');
         var animationTimer = null;
         var started = new Date().getTime();
         var duration = 2000;
@@ -702,7 +575,7 @@ var xsdp = {
         arrRange.push(xsdp.getRandomString(6));
         //chuyen tat ca ket qua ve anh gif
         for (var i = 0; i < arrRange.length; i++) {
-            jQuery('#qttd_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'assets/images/load.gif" class="img-loading hide-img" alt=""/>');
+            jQuery('#qttd_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
         //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
         for (var i = 0; i < arrRange.length; i++) {
