@@ -1,21 +1,27 @@
 <?php
+/**
+ * @public $tryLottery TryLottery
+ */
 function handleQuayThuXoSoMienBac($args){
-    $prizes = ['ĐB' => [26],
-        'G.1' => [0],
-        'G.2' => [1,2],
-        'G.3' => [3,4,5,6,7,8],
-        'G.4' => [9,10,11,12],
-        'G.5' => [13,14,15,16,17,18],
-        'G.6' => [19,20,21],
-        'G.7' => [22,23,24,25]
-    ];
+//    $prizes = ['ĐB' => [26],
+//        'G.1' => [0],
+//        'G.2' => [1,2],
+//        'G.3' => [3,4,5,6,7,8],
+//        'G.4' => [9,10,11,12],
+//        'G.5' => [13,14,15,16,17,18],
+//        'G.6' => [19,20,21],
+//        'G.7' => [22,23,24,25]
+//    ];
+    $date = isset($args['date']) ? $args['date'] : date('Y-m-d');
+    $tryLottery = new TryLottery();
+    $prizes = $tryLottery->getQuayThuXSMBByDate($date);
     ob_start(); ?>
     <section id="bangkq_xsmb">
         <div class="click-test">
             <a href="javascript:void(0)" id="turn"><span class="change-color">NHẤP QUAY THỬ XSMB</span></a>
         </div>
         <header>
-            <h2 class="title-header color-h2">Kết quả quay thử xổ số Miền Bắc <span class="color-black"> <?=date('d/m/Y')?></span></h2>
+            <h2 class="title-header color-h2">Kết quả quay thử xổ số Miền Bắc <span class="color-black"> <?=date('d/m/Y',strtotime($date))?></span></h2>
         </header>
         <div class="block-main-content">
             <table class="table table-striped table-xsmb" id="table-xsmb">
@@ -24,9 +30,9 @@ function handleQuayThuXoSoMienBac($args){
                 <tr>
                     <td><?=$key ?></td>
                     <td class="text-center">
-                        <?php foreach ($prizeItems as $item): ?>
+                        <?php foreach ($prizeItems as $item => $value): ?>
                             <span class="col-xs-<?= count($prizeItems) == 3 || count($prizeItems) > 4 ? 12 / 3 : 12 / count($prizeItems)   ?> <?= $key == "ĐB" ? 'special-prize-lg no-bor' : 'number-black-bold-mb no-bor-b' ?> div-horizontal" id="mb_prize_<?=$item?>" data="0">
-                                <img src="<?=TRY_LOTTERY_DIR_ASSETS_URL ?>/images/load.gif" class="img-loading" alt="loading" />
+                                <?=$value?>
                             </span>
                         <?php endforeach; ?>
                     </td>

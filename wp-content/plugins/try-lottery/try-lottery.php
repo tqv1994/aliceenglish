@@ -35,10 +35,11 @@ function try_lottery_scripts(){
     wp_enqueue_script('try-lottery-custom',TRY_LOTTERY_DIR_SCRIPTS_URL.'/custom.js','','4.9');
 }
 add_action('wp_enqueue_scripts','try_lottery_scripts',20);
-
+include(TRY_LOTTERY_INCLUDE_PATH.'/TryLottery.php');
 include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_bac.php');
 include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_nam.php');
 include(TRY_LOTTERY_SHORTCODE_PATH.'/try_lottery_mien_trung.php');
+
 
 add_action('wp_head','add_scripts',0);
 function add_scripts(){

@@ -1,6 +1,5 @@
 jQuery(document).ready(function($){
     if($('#bangkq_xsmb').length > 0){
-        xsdp.RunRandomXSMB();
         $('#bangkq_xsmb').on('click','#turn',function(){
            xsdp.RunRandomXSMB();
         });
