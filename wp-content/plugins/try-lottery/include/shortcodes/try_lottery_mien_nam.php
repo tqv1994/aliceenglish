@@ -1,16 +1,38 @@
 <?php
 function handleQuayThuXoSoMienNam($args){
-    $prizes = [
-        [[0], [1], [2]],
-        [[3], [4], [5]],
-        [[6, 7, 8],[9, 10, 11],[12, 13, 14]],
-        [[15], [16], [17]],
-        [[18, 19, 20, 21, 22, 23, 24],[25, 26, 27, 28, 29, 30, 31],[32, 33, 34, 35, 36, 37, 38]],
-        [[39, 40],[41, 42],[43, 44]],
-        [[45], [46], [47]],
-        [[48], [49], [50]],
-        [[51], [52], [53]],
-    ];
+    $date = isset($args['date']) ? $args['date'] : date('Y-m-d');
+    $tryLottery = new TryLottery();
+    $prizes = [];
+    $prizesDongNai = $tryLottery->getQuayThuXSTDByDate('DN',$date);
+    $prizesCanTho = $tryLottery->getQuayThuXSTDByDate('CT',$date);
+    $prizesSocTrang = $tryLottery->getQuayThuXSTDByDate('ST',$date);
+    $positionPrize = 0;
+    for($i = 0; $i <= 8; $i++){
+        foreach ($prizesDongNai as $numberPrize) {
+            $prizes[$i][0][$positionPrize] = $numberPrize;
+            $positionPrize++;
+        }
+        foreach ($prizesCanTho as $numberPrize){
+            $prizes[$i][1][$positionPrize] = $numberPrize;
+            $positionPrize++;
+        }
+        foreach ($prizesSocTrang as $numberPrize){
+            $prizes[$i][2][$positionPrize] = $numberPrize;
+            $positionPrize++;
+        }
+    }
+
+//    $prizes = [
+//        [[0], [1], [2]],
+//        [[3], [4], [5]],
+//        [[6, 7, 8],[9, 10, 11],[12, 13, 14]],
+//        [[15], [16], [17]],
+//        [[18, 19, 20, 21, 22, 23, 24],[25, 26, 27, 28, 29, 30, 31],[32, 33, 34, 35, 36, 37, 38]],
+//        [[39, 40],[41, 42],[43, 44]],
+//        [[45], [46], [47]],
+//        [[48], [49], [50]],
+//        [[51], [52], [53]],
+//    ];
     ob_start(); ?>
     <section id="bangkq_xsmn">
         <div class="click-test">
@@ -45,9 +67,9 @@ function handleQuayThuXoSoMienNam($args){
                     <td>G.<?=(count($prizes)-$key - 1) > 0 ? count($prizes)-$key - 1 : 'ĐB'?></td>
                     <?php foreach ($cols as $col => $items): ?>
                         <td>
-                            <?php foreach($items as $item): ?>
+                            <?php foreach($items as $item => $value): ?>
                             <span class="col-xs-12 <?= $key == 0 || $key == 8 ? 'special-prize-mn' : 'number-black-bold'?> div-horizontal" id="mn_prize_<?=$item?>"  data="0">
-                                <img src="<?=TRY_LOTTERY_DIR_ASSETS_URL ?>/images/load.gif" class="img-loading" alt="loading"/>
+                                <?=$value?>
                             </span>
                             <?php endforeach; ?>
                         </td>

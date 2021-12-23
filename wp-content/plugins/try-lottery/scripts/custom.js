@@ -5,7 +5,6 @@ jQuery(document).ready(function($){
         });
     }
     if($('#bangkq_xsmn').length > 0){
-        xsdp.RunRandomXSMN();
         $('#bangkq_xsmn').on('click','#turn',function(){
             xsdp.RunRandomXSMN();
         });
