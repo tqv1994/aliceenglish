@@ -1,24 +1,17 @@
 <?php
 function handleQuayThuXoSoMienNam($args){
-    $date = isset($args['date']) ? $args['date'] : date('Y-m-d');
+    $date = isset($args['date']) ? $args['date'] : date('Y-m-25');
     $tryLottery = new TryLottery();
     $prizes = [];
-    $prizesDongNai = $tryLottery->getQuayThuXSTDByDate('DN',$date);
-    $prizesCanTho = $tryLottery->getQuayThuXSTDByDate('CT',$date);
-    $prizesSocTrang = $tryLottery->getQuayThuXSTDByDate('ST',$date);
+    $cacDaiTodays = $tryLottery->getCacDaiMienNamByDate($date);
     $positionPrize = 0;
     for($i = 0; $i <= 8; $i++){
-        foreach ($prizesDongNai as $numberPrize) {
-            $prizes[$i][0][$positionPrize] = $numberPrize;
-            $positionPrize++;
-        }
-        foreach ($prizesCanTho as $numberPrize){
-            $prizes[$i][1][$positionPrize] = $numberPrize;
-            $positionPrize++;
-        }
-        foreach ($prizesSocTrang as $numberPrize){
-            $prizes[$i][2][$positionPrize] = $numberPrize;
-            $positionPrize++;
+        foreach ($cacDaiTodays as $key => $code){
+            $prizeTDs = $tryLottery->getQuayThuXSTDByDate($code,$date);
+            foreach ($prizeTDs[$i] as $numberPrize) {
+                $prizes[$i][$key][$positionPrize] = $numberPrize;
+                $positionPrize++;
+            }
         }
     }
 
@@ -46,19 +39,11 @@ function handleQuayThuXoSoMienNam($args){
                 <thead>
                 <tr>
                     <th class="text-center" style="font-weight: normal;">Giải</th>
-
-                    <th class="text-center col3">
-                        <a href="/quay-thu-xsvt.html">Vũng Tàu</a>
+                    <?php foreach ($cacDaiTodays as $code): ?>
+                    <th class="text-center col<?=count($cacDaiTodays)?>">
+                        <a href="javascript:void(0)"><?=$tryLottery->getTenDai($code)?></a>
                     </th>
-
-                    <th class="text-center col3">
-                        <a href="/quay-thu-xsbtr.html">Bến Tre</a>
-                    </th>
-
-                    <th class="text-center col3">
-                        <a href="/quay-thu-xsbl.html">Bạc Liêu</a>
-                    </th>
-
+                    <?php endforeach ?>
                 </tr>
                 </thead>
                 <tbody>

@@ -10,7 +10,6 @@ jQuery(document).ready(function($){
         });
     }
     if($('#bangkq_xsmt').length > 0){
-        xsdp.RunRandomXSMT();
         $('#bangkq_xsmt').on('click','#turn',function(){
             xsdp.RunRandomXSMT();
         });
