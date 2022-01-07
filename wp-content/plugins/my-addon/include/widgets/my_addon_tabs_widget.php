@@ -20,15 +20,18 @@ class MyAddon_Tabs_Widget extends WP_Widget {
         $default = array(
             "title" => "Tiêu đề tab",
             "url" => '',
-            "content" => ""
+            "content" => "",
+            "icon" => "", // https://dev.materialdesignicons.com/icons
         );
         $instance = wp_parse_args( (array) $instance, $default);
         $title = esc_attr( $instance["title"] );
         $url = esc_attr( $instance["url"] );
+        $icon = esc_attr( $instance["icon"] );
         $content = esc_attr( $instance["content"] );
         //Hiển thị form trong option của widget
         echo '<p>Nhập tiêu đề <input class="widefat" type="text" name="'.$this->get_field_name('title').'" value="'.$title.'" /></p>';
         echo '<p>Nhập URL Tab <input class="widefat" type="text" name="'.$this->get_field_name('url').'" value="'.$url.'" /></p>';
+        echo '<p>Nhập Class Icon <input class="widefat" type="text" name="'.$this->get_field_name('icon').'" value="'.$icon.'" /></p>';
         echo '<p>Nhập Nội dung <textarea class="widefat" name="'.$this->get_field_name('content').'">'.$content.'</textarea></p>';
     }
 
@@ -43,6 +46,7 @@ class MyAddon_Tabs_Widget extends WP_Widget {
         $instance["title"] = strip_tags($new_instance["title"]);
         $instance["url"] = strip_tags($new_instance["url"]);
         $instance["content"] = $new_instance["content"];
+        $instance["icon"] = strip_tags($new_instance["icon"]);
         return $instance;
     }
 

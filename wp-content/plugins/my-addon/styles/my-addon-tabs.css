@@ -1,36 +1,61 @@
 #my-addon-tabs-area {
     position: relative;
-    padding-top: 50px;
-    border-top: 0;
+    z-index: 2;
+    bottom: -2px;
 }
 
 #my-addon-tabs-area .tabs-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    margin: 0;
+    border-bottom: 0;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    position: relative;
+    z-index: 2;
+    bottom: -2px;
 }
 
 #my-addon-tabs-area .tabs-nav li {
-    cursor: pointer;
-    width: auto;
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #353535;
-    letter-spacing: 2px;
-    margin: 0 0 0px;
-    background: rgba(200, 200, 200, .15);
-    padding: 12px 20px 12px 20px;
-    border-top: 10px solid rgba(200, 200, 200, .15);
+    white-space: nowrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    color: #000;
+    font-size: 1em;
+    border: 0;
+    border-top: 2px solid transparent;
+    background: 0 0;
+    padding: 8px 10px;
+    border-radius: 50px!important;
+    isolation: unset;
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 #my-addon-tabs-area .tabs-nav li.active {
     font-weight: bold;
     background: #fff;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+    border-color: var(--swiper-theme-color,#000);
 }
 
 #my-addon-tabs-area .tabs-nav li:first-child {
@@ -41,12 +66,22 @@
     border-radius: 0 3px 0 0;
 }
 
+#my-addon-tabs-area .tabs-nav li a{
+    text-decoration: none;
+}
+
 #my-addon-tabs-area .tabs-nav li h4 {
     font-size: 1.1rem;
     font-weight: 700;
     color: #353535;
     letter-spacing: 2px;
     margin: 0;
+}
+
+#my-addon-tabs-area .tabs-nav li em{
+    color: var(--swiper-theme-color,#000);
+    margin-bottom: 4px;
+    font-size: 1.2em;
 }
 
 #my-addon-tabs-area .tabs-content ol {
@@ -91,4 +126,14 @@
     display: block;
     width: 0px;
     height: 0px;
+}
+
+.tabs-content{
+    padding: 15px;
+    position: relative;
+    /* overflow: hidden; */
+    background: var(--bs-white);
+    -webkit-box-shadow: rgb(50 50 93 / 25%) 0 4px 10px -57px, rgb(0 0 0 / 30%) 0 2px 5px -3px;
+    box-shadow: rgb(50 50 93 / 25%) 0 4px 10px -57px, rgb(0 0 0 / 30%) 0 2px 5px -3px;
+    border-top: 2px solid var(--swiper-theme-color,#000);
 }

@@ -54,7 +54,7 @@ function my_addon_dynamic_sidebar($sidebar_id, $widgets_no = 3) {
         $instance = $instance[$wp_registered_widgets[$id]['params'][0]['number']];
         $class_name = get_class($wp_registered_widgets[$id]['callback'][0]);
 
-        $tabs[$key] = sprintf('<li class="%s" data-key="%d"><a href="%s"><h4>%s</h4></a></li>', ($key === 0 ? 'active' : ''), $key,isset($instance['url']) ? $instance['url'] : '', $instance['title']);
+        $tabs[$key] = sprintf('<li class="%s" data-key="%d"><a href="%s"><em class="mdi mdi-%s"></em><h4>%s</h4></a></li>', (strpos(get_permalink(),$instance['url'])!== false ? 'active' : ''), $key,isset($instance['url']) ? $instance['url'] : '', isset($instance['icon']) ? $instance['icon'] : '', $instance['title']);
         ob_start();
         the_widget($class_name, $instance, array('before_widget' => '', 'after_widget' => '', 'widget_id' => $wp_registered_widgets[$id]['id']));
         $tabs_content[$key] = ob_get_clean();
