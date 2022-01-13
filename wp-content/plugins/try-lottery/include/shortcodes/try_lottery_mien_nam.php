@@ -7,7 +7,7 @@ function handleQuayThuXoSoMienNam($args){
     $positionPrize = 0;
     for($i = 0; $i <= 8; $i++){
         foreach ($cacDaiTodays as $key => $code){
-            $prizeTDs = $tryLottery->getQuayThuXSTDByDate($code,$date);
+            $prizeTDs = $tryLottery->getQuayThuXSTD($code);
             foreach ($prizeTDs[$i] as $numberPrize) {
                 $prizes[$i][$key][$positionPrize] = $numberPrize;
                 $positionPrize++;
@@ -40,26 +40,27 @@ function handleQuayThuXoSoMienNam($args){
                 <tr>
                     <th class="text-center" style="font-weight: normal;">Giải</th>
                     <?php foreach ($cacDaiTodays as $code): ?>
-                    <th class="text-center col<?=count($cacDaiTodays)?>">
-                        <a href="javascript:void(0)"><?=$tryLottery->getTenDai($code)?></a>
-                    </th>
+                        <th class="text-center col<?=count($cacDaiTodays)?>">
+                            <a href="javascript:void(0)"><?=$tryLottery->getTenDai($code)?></a>
+                        </th>
                     <?php endforeach ?>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($prizes as $key => $cols): ?>
-                <tr>
-                    <td>G.<?=(count($prizes)-$key - 1) > 0 ? count($prizes)-$key - 1 : 'ĐB'?></td>
-                    <?php foreach ($cols as $col => $items): ?>
-                        <td>
-                            <?php foreach($items as $item => $value): ?>
-                            <span class="col-xs-12 <?= $key == 0 || $key == 8 ? 'special-prize-mn' : 'number-black-bold'?> div-horizontal" id="mn_prize_<?=$item?>"  data="0">
-                                <?=$value?>
+                    <tr>
+                        <td>G.<?=(count($prizes)-$key - 1) > 0 ? count($prizes)-$key - 1 : 'ĐB'?></td>
+                        <?php foreach ($cols as $col => $items): ?>
+                            <td>
+                                <?php foreach($items as $item => $value): ?>
+                                    <span class="col-xs-12 <?= $key == 0 || $key == 8 ? 'special-prize-mn' : 'number-black-bold'?> div-horizontal" id="mn_prize_<?=$item?>"  data="0">
+                               <img src="<?=TRY_LOTTERY_DIR_ASSETS_URL?>/images/load.gif" class="img-loading"
+                                    alt="loading" />
                             </span>
-                            <?php endforeach; ?>
-                        </td>
-                    <?php endforeach; ?>
-                </tr>
+                                <?php endforeach; ?>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
@@ -95,6 +96,28 @@ function handleQuayThuXoSoMienNam($args){
                     <td>8</td>
                     <td>9</td>
                 </tr>
+                </tbody>
+            </table>
+            <table style="margin-top: 15px" class="table firstlast fl text-center mar-top">
+                <thead>
+                <tr class="header">
+                    <th >Đầu</th>
+                    <?php foreach ($cacDaiTodays as $code): ?>
+                        <th >
+                            <?=$tryLottery->getTenDai($code)?>
+                        </th>
+                    <?php endforeach ?>
+                </tr>
+                </thead>
+                <tbody>
+                <?php for($i = 0; $i <= 9; $i++): ?>
+                    <tr>
+                        <td class="clnote"><?=$i?></td>
+                        <?php foreach ($cacDaiTodays as $code): ?>
+                            <td style="padding-left: 15px" class=" text-left v-loto-dau-<?=$i?>"></td>
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endfor; ?>
                 </tbody>
             </table>
         </div>

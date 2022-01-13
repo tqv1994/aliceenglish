@@ -14,7 +14,7 @@ function handleQuayThuXoSoMienBac($args){
 //    ];
     $date = isset($args['date']) ? $args['date'] : date('Y-m-d');
     $tryLottery = new TryLottery();
-    $prizes = $tryLottery->getQuayThuXSMBByDate($date);
+    $prizes = $tryLottery->getQuayThuXSMB();
     ob_start(); ?>
     <section id="bangkq_xsmb">
         <div class="click-test">
@@ -27,16 +27,17 @@ function handleQuayThuXoSoMienBac($args){
             <table class="table table-striped table-xsmb" id="table-xsmb">
                 <tbody>
                 <?php foreach ($prizes as $key => $prizeItems): ?>
-                <tr>
-                    <td><?=$key ?></td>
-                    <td class="text-center">
-                        <?php foreach ($prizeItems as $item => $value): ?>
-                            <span class="col-xs-<?= count($prizeItems) == 3 || count($prizeItems) > 4 ? 12 / 3 : 12 / count($prizeItems)   ?> <?= $key == "ĐB" ? 'special-prize-lg no-bor' : 'number-black-bold-mb no-bor-b' ?> div-horizontal" id="mb_prize_<?=$item?>" data="0">
-                                <?=$value?>
+                    <tr>
+                        <td><?=$key ?></td>
+                        <td class="text-center">
+                            <?php foreach ($prizeItems as $item => $value): ?>
+                                <span class="col-xs-<?= count($prizeItems) == 3 || count($prizeItems) > 4 ? 12 / 3 : 12 / count($prizeItems)   ?> <?= $key == "ĐB" ? 'special-prize-lg no-bor' : 'number-black-bold-mb no-bor-b' ?> div-horizontal" id="mb_prize_<?=$item?>" data="0">
+                                <img src="<?=TRY_LOTTERY_DIR_ASSETS_URL?>/images/load.gif" class="img-loading"
+                                     alt="loading" />
                             </span>
-                        <?php endforeach; ?>
-                    </td>
-                </tr>
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
@@ -75,9 +76,48 @@ function handleQuayThuXoSoMienBac($args){
                 </tr>
                 </tbody>
             </table>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-6 col-xs-12">
+                    <table class="table firstlast fl text-center mar-top">
+                        <thead>
+                            <tr class="header">
+                                <th >Đầu</th>
+                                <th >Đuôi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php for($i = 0; $i <= 9; $i++): ?>
+                            <tr>
+                                <td class="clnote"><?=$i?></td>
+                                <td style="padding-left: 15px" class=" text-left v-loto-dau-<?=$i?>"></td>
+                            </tr>
+                        <?php endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <table class="table firstlast fr text-center mar-top">
+                        <thead>
+                        <tr class="header">
+                            <th >Đầu</th>
+                            <th >Đuôi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php for($i = 0; $i <= 9; $i++): ?>
+                            <tr>
+                                <td style="padding-right: 15px" class=" text-right v-loto-duoi-<?=$i?>"></td>
+                                <td class="clnote"><?=$i?></td>
+                            </tr>
+                        <?php endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </section>
-<?php
+    <?php
     $html = ob_get_clean();
     echo $html;
 }

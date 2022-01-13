@@ -14,6 +14,7 @@ var xsdp = {
         currentPage: 1
     },
     init: function () {
+        jQuery("input[name='select-option']").attr("disabled", true);
         this.events();
     },
     events: function () {
@@ -292,6 +293,7 @@ var xsdp = {
     RunRandomComplete: function (str) {
         console.log('complete');
         isrunning = false;
+        jQuery("input[name='select-option']").removeAttr("disabled");
         jQuery('#turn').html('<span class="change-color">NHẬP QUAY THỬ LẠI</span>');
     },
     choice: function (id, num) {
@@ -312,6 +314,7 @@ var xsdp = {
         });
     },
     RunRandomXSMB: function () {
+        jQuery("input[name='select-option']").attr("disabled", true);
         isrunning = true;
         xsdp.goToByScroll('bangkq_xsmb');
         jQuery('#turn').html('NHẤP QUAY THỬ XSMB');
@@ -344,9 +347,9 @@ var xsdp = {
         for (var i = 0; i < arrRange.length; i++) {
             jQuery('#mb_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
-        //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
+        //gan du lieu cho tung ket qua, moi ket qua cach nhau 3000
         for (var i = 0; i < arrRange.length; i++) {
-            xsdp.sethtml('mb_prize_' + i, arrRange[i], 1000 * i);
+            xsdp.sethtml('mb_prize_' + i, arrRange[i], 3000 * i);
         }
     },
     sethtml: function (id, value, time) {
@@ -355,7 +358,7 @@ var xsdp = {
     sethtmlRuning: function (id, value) {
         var animationTimer = null;
         var started = new Date().getTime();
-        var duration = 1000;
+        var duration = 3000;
         var minNumber = 0; // le minimum
         var maxNumber = 9; // le maximum
         jQuery('#' + id).html('<div class="output" id="output0"></div>' +
@@ -374,11 +377,40 @@ var xsdp = {
                 clearInterval(animationTimer); // Stop the loop
                 //show ket qua
                 jQuery('#' + id).html(value); jQuery('#' + id).attr("data", value);
+                var trIndex = jQuery('#' + id).parent().parent().index();
+                if(jQuery('.firstlast.fl').length > 0){
+                    var firstLast = value.slice(-2);
+                    var first = firstLast[0];
+                    var last = firstLast[1];
+                    console.log(first,last);
+                    if(jQuery('.firstlast.fl .v-loto-dau-'+first).length > 0){
+                        var text = jQuery('.firstlast.fl .v-loto-dau-'+first).text();
+                        if(trIndex != 0) {
+                            jQuery('.firstlast.fl .v-loto-dau-'+first).text(text ? last+","+text : last);
+                        }else{
+                            jQuery('.firstlast.fl .v-loto-dau-'+first).html(text ? `<span class="clnote">${last}</span>` + "," + text : `<span class="clnote">${last}</span>`);
+                        }
+                    }
+                }
+                if(jQuery('.firstlast.fr').length > 0){
+                    var firstLast = value.slice(-2);
+                    var first = firstLast[0];
+                    var last = firstLast[1];
+                    if(jQuery('.firstlast.fr .v-loto-duoi-'+first).length > 0){
+                        var text = jQuery('.firstlast.fl .v-loto-duoi-'+last).text();
+                        if(trIndex != 0) {
+                            jQuery('.firstlast.fr .v-loto-duoi-'+last).text(text ? first+","+text : first);
+                        }else{
+                            jQuery('.firstlast.fr .v-loto-duoi-'+last).html(text ? `<span class="clnote">${first}</span>` + "," + text : `<span class="clnote">${first}</span>`);
+                        }
 
+                    }
+                }
             }
         }, 100);
     },
     RunRandomXSMN: function () {
+        jQuery("input[name='select-option']").attr("disabled", true);
         isrunning = true;
         xsdp.goToByScroll('bangkq_xsmn');
         jQuery('#turn').html('NHẤP QUAY THỬ XSMN');
@@ -387,7 +419,7 @@ var xsdp = {
         var numberprovince = conveniancecount / 18;
         var animationTimer = null;
         var started = new Date().getTime();
-        var duration = 2000;
+        var duration = 6000;
         var arrRange = new Array();
         //add ket qua
         for (var index = 0; index < numberprovince; index++) {
@@ -427,9 +459,9 @@ var xsdp = {
         for (var i = 0; i < arrRange.length; i++) {
             jQuery('#mn_prize_' + i).html('<img src="' + xsdpconfig.rootPath + 'images/load.gif" class="img-loading hide-img" alt=""/>');
         }
-        //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
+        //gan du lieu cho tung ket qua, moi ket qua cach nhau 3000
         for (var i = 0; i < arrRange.length; i++) {
-            xsdp.sethtmlMN('mn_prize_' + i, arrRange[i], 1000 * i);
+            xsdp.sethtmlMN('mn_prize_' + i, arrRange[i], 3000 * i);
         }
     },
     sethtmlMN: function (id, value, time) {
@@ -438,7 +470,7 @@ var xsdp = {
     sethtmlMNRuning: function (id, value) {
         var animationTimer = null;
         var started = new Date().getTime();
-        var duration = 1000;
+        var duration = 3000;
         var minNumber = 0; // le minimum
         var maxNumber = 9; // le maximum
         jQuery('#' + id).html('<div class="output" id="outputMN0"></div>' +
@@ -457,11 +489,28 @@ var xsdp = {
                 clearInterval(animationTimer); // Stop the loop
                 //show ket qua
                 jQuery('#' + id).html(value); jQuery('#' + id).attr("data", value);
-
+                var tdIndex = jQuery('#' + id).parent().index();
+                var trIndex = jQuery('#' + id).parent().parent().index();
+                if(jQuery('.firstlast.fl').length > 0){
+                    var firstLast = value.slice(-2);
+                    var first = firstLast[0];
+                    var last = firstLast[1];
+                    jQuery(`.firstlast.fl tr`).each(function(){
+                        if(jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-`+first).length > 0){
+                            var text = jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-`+first).text();
+                            if(trIndex < 8) {
+                                jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-` + first).text(text ? last + "," + text : last);
+                            }else{
+                                jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-` + first).html(text ? `<span class="clnote">${last}</span>` + "," + text : `<span class="clnote">${last}</span>`);
+                            }
+                        }
+                    });
+                }
             }
         }, 100);
     },
     RunRandomXSMT: function () {
+        jQuery("input[name='select-option']").attr("disabled", true);
         isrunning = true;
         xsdp.goToByScroll('bangkq_xsmt');
         jQuery('#turn').html('NHẤP QUAY THỬ XSMT');
@@ -469,7 +518,7 @@ var xsdp = {
         var numberprovince = conveniancecount / 18;
         var animationTimer = null;
         var started = new Date().getTime();
-        var duration = 2000;
+        var duration = 6000;
         var arrRange = new Array();
         //add ket qua
         for (var index = 0; index < numberprovince; index++) {
@@ -511,7 +560,7 @@ var xsdp = {
         }
         //gan du lieu cho tung ket qua, moi ket qua cach nhau 1000
         for (var i = 0; i < arrRange.length; i++) {
-            xsdp.sethtmlMT('mt_prize_' + i, arrRange[i], 1000 * i);
+            xsdp.sethtmlMT('mt_prize_' + i, arrRange[i], 3000 * i);
         }
     },
     sethtmlMT: function (id, value, time) {
@@ -520,7 +569,7 @@ var xsdp = {
     sethtmlMTRuning: function (id, value) {
         var animationTimer = null;
         var started = new Date().getTime();
-        var duration = 1000;
+        var duration = 3000;
         var minNumber = 0; // le minimum
         var maxNumber = 9; // le maximum
         jQuery('#' + id).html('<div class="output" id="outputMT0"></div>' +
@@ -539,6 +588,23 @@ var xsdp = {
                 clearInterval(animationTimer); // Stop the loop
                 //show ket qua
                 jQuery('#' + id).html(value); jQuery('#' + id).attr("data", value);
+                var tdIndex = jQuery('#' + id).parent().index();
+                var trIndex = jQuery('#' + id).parent().parent().index();
+                if(jQuery('.firstlast.fl').length > 0){
+                    var firstLast = value.slice(-2);
+                    var first = firstLast[0];
+                    var last = firstLast[1];
+                    jQuery(`.firstlast.fl tr`).each(function(index){
+                        if(jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-`+first).length > 0){
+                            var text = jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-`+first).text();
+                            if(trIndex < 8) {
+                                jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-` + first).text(text ? last + "," + text : last);
+                            }else{
+                                jQuery(this).find(`td:eq(${tdIndex}).v-loto-dau-` + first).html(text ? `<span class="clnote">${last}</span>` + "," + text : `<span class="clnote">${last}</span>`);
+                            }
+                        }
+                    });
+                }
 
             }
         }, 100);

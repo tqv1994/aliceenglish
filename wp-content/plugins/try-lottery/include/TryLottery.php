@@ -1,7 +1,7 @@
 <?php
 class TryLottery{
     private function getRandomString($len) {
-    $number = '';
+        $number = '';
         for ($i = 0; $i < $len; $i++) {
             $number .= (string)rand(0,9);
         }
@@ -76,6 +76,15 @@ class TryLottery{
         return unserialize($result);
     }
 
+    public function getQuayThuXSMB(){
+        $result = get_option("tryLotteryMB",null);
+        if(is_null($result)){
+            $result = serialize($this->getRandomXSMB());
+            add_option("tryLotteryMB",$result);
+        }
+        return unserialize($result);
+    }
+
     /**
      * @param $lotteryCode string // Mã Đài: HCM | DT | CM | BT | VT | BL | DN | CT | ST |
      * // TN | AG | BTN | VL | BD | TV | LA | BP | HG
@@ -91,6 +100,15 @@ class TryLottery{
         }else{
             $result = serialize($this->getRandomXSTD());
             update_option("tryLottery{$lotteryCode}_{$date}",$result);
+        }
+        return unserialize($result);
+    }
+
+    public function getQuayThuXSTD($lotteryCode){
+        $result = get_option("tryLottery{$lotteryCode}",null);
+        if(is_null($result)){
+            $result = serialize($this->getRandomXSTD());
+            add_option("tryLottery{$lotteryCode}",$result);
         }
         return unserialize($result);
     }
