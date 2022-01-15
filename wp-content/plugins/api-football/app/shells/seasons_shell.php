@@ -1,19 +1,19 @@
 <?php
 
-class BetsShell extends MvcShell
+class SeasonsShell extends MvcShell
 {
 
     public function init()
     {
-        $this->load_model('Bet');
+        $this->load_model('Season');
     }
 
-    // This updates the sort_name values of all venues; it can be run using "wpmvc venues update_all_sort_names"
+    // This get data from api to update into database; it can be run using "wpmvc seasons get_data_from_api"
     public function get_data_from_api()
     {
         $apiKey = get_option('api_football_key', false);
         $apiUrl = get_option('api_football_url', false);
-        $url = "https://$apiUrl/odds/bets";
+        $url = "https://$apiUrl/leagues/seasons";
         $args = array(
             'headers' => [
                 "x-rapidapi-key" => $apiKey,
@@ -22,11 +22,15 @@ class BetsShell extends MvcShell
         );
         $response = wp_remote_get($url, $args);
         $data = json_decode($response['body']);
+//        $this->out(json_encode($data->response));
         if (is_array($data->response)) {
             foreach ($data->response as $item) {
-                $bet = $this->Bet->find_one_by_bet_id($item->id);
-                if (is_null($bet)) {
-                    $this->Bet->create(['bet_id' => $item->id, 'name' => $item->name]);
+                $season = $this->Season->find_one_by_year($item);
+                if (is_null($season)) {
+                    $this->Season->create([
+                        'season_id' => '',
+                        'year' => $item,
+                    ]);
                 }
             }
         }

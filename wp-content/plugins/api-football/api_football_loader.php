@@ -41,7 +41,7 @@ class ApiFootballLoader extends MvcPluginLoader {
               name varchar(255) NOT NULL,
               type varchar(128) NULL,
               logo varchar(255) NULL,
-              data text() NULL,
+              data text NULL,
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
@@ -52,7 +52,7 @@ class ApiFootballLoader extends MvcPluginLoader {
               timezone varchar(128) NULL,
               date varchar(128) NULL,
               timestamp bigint(20) NULL,
-              data text() NULL,
+              data text NULL,
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
@@ -61,6 +61,7 @@ class ApiFootballLoader extends MvcPluginLoader {
               id bigint(20) NOT NULL auto_increment,
               season_id int(11),
               year int(10) NULL,
+              data text NULL,
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
