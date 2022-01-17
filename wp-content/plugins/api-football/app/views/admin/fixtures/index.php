@@ -16,7 +16,7 @@
     <div class="tablenav-pages">
 
         <?php echo paginate_links($pagination); ?>
-    
+
     </div>
 
 </div>
@@ -26,25 +26,35 @@
 <table class="widefat post fixed striped" cellspacing="0">
 
     <thead>
-        <?php echo $helper->admin_header_cells($this); ?>
+        <tr>
+            <th>Time</th>
+            <th>Home</th>
+            <th>Score</th>
+            <th>Away</th>
+            <th></th>
+        </tr>
     </thead>
-
-    <tfoot>
-        <?php echo $helper->admin_header_cells($this); ?>
-    </tfoot>
-
     <tbody>
-        <?php echo $helper->admin_table_cells($this, $objects); ?>
+        <?php foreach ($objects as $object): ?>
+        <?php $data = unserialize($object->data); ?>
+        <tr>
+            <td><?=$this->datetime->convertDateTime(date('Y-m-d H:i:s',$object->timestamp),'d/m/Y H:i:s',$object->timezone) ?></td>
+            <td><?=$data['teams']->home->name?></td>
+            <td><?=$data['goals']->home?> - <?=$data['goals']->away?></td>
+            <td><?=$data['teams']->away->name?></td>
+            <td><?=$object->active == 1 ? 'Live' : ''?></td>
+        </tr>
+        <?php endforeach ?>
     </tbody>
-    
+
 </table>
 
 <div class="tablenav">
 
     <div class="tablenav-pages">
-    
+
         <?php echo paginate_links($pagination); ?>
-    
+
     </div>
 
 </div>

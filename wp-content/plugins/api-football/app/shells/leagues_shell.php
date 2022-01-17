@@ -25,7 +25,6 @@ class LeaguesShell extends MvcShell
         if (is_array($data->response)) {
             foreach ($data->response as $item) {
                 $league = $this->League->find_one_by_league_id($item->league->id);
-                $this->out(json_encode($league));
                 if (is_null($league)) {
                     $this->League->create([
                         'league_id' => $item->league->id,

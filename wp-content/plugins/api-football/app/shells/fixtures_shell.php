@@ -23,6 +23,10 @@ class FixturesShell extends MvcShell
         $response = wp_remote_get($url, $args);
         $data = json_decode($response['body']);
         if (is_array($data->response)) {
+            $this->Fixture->update_all(
+                ['active'=>0],
+                ['active <>'=>0]
+            );
             foreach ($data->response as $item) {
                 $fixture = $this->Fixture->find_one_by_fixture_id($item->fixture->id);
                 if (is_null($fixture)) {
@@ -37,7 +41,23 @@ class FixturesShell extends MvcShell
                             'teams' => $item->teams,
                             'goals' => $item->goals,
                             'score' => $item->score
-                        ])
+                        ]),
+                        'active' => 1
+                    ]);
+                }else{
+                    $this->Fixture->update($fixture->__id,[
+                        'fixture_id' => $item->fixture->id,
+                        'timezone' => $item->fixture->timezone,
+                        'date' => $item->fixture->date,
+                        'timestamp' => $item->fixture->timestamp,
+                        'data' => serialize([
+                            'fixture' => $item->fixture,
+                            'league' => $item->league,
+                            'teams' => $item->teams,
+                            'goals' => $item->goals,
+                            'score' => $item->score
+                        ]),
+                        'active' => 1
                     ]);
                 }
             }

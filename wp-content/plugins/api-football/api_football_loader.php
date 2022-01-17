@@ -53,6 +53,7 @@ class ApiFootballLoader extends MvcPluginLoader {
               date varchar(128) NULL,
               timestamp bigint(20) NULL,
               data text NULL,
+              active int(11) NULL,
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
@@ -65,6 +66,22 @@ class ApiFootballLoader extends MvcPluginLoader {
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
+
+        $sql = '
+            CREATE TABLE '.$wpdb->prefix.'odds (
+              id bigint(20) NOT NULL auto_increment,
+              fixture_id int(11),
+              data text NULL,
+              PRIMARY KEY  (id)
+            )';
+        dbDelta($sql);
+        try {
+            $sql = 'ALTER TABLE ' . $wpdb->prefix . 'fixtures ADD `active` int(11) NULL;';
+            dbDelta($sql);
+        }catch (Exception $e){
+
+        }
+
     }
 
     function deactivate() {
