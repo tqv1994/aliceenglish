@@ -8,7 +8,7 @@ class FixturesShell extends MvcShell
         $this->load_model('Fixture');
     }
 
-    // This get data from api to update into database; it can be run using "wpmvc bookmakers get_data_from_api"
+    // This get data from api to update into database; it can be run using "wpmvc fixtures get_data_from_api"
     public function get_data_from_api()
     {
         $apiKey = get_option('api_football_key', false);

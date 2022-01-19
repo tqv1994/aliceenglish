@@ -75,6 +75,18 @@ class ApiFootballLoader extends MvcPluginLoader {
               PRIMARY KEY  (id)
             )';
         dbDelta($sql);
+
+        $sql = '
+            CREATE TABLE '.$wpdb->prefix.'odd_bets (
+              id bigint(20) NOT NULL auto_increment,
+              bet_id int(11) NULL,
+              bookmaker_id int(11) NULL,
+              odd_id int(11) NULL,
+              name varchar(255),
+              data text NULL,
+              PRIMARY KEY  (id)
+            )';
+        dbDelta($sql);
         try {
             $sql = 'ALTER TABLE ' . $wpdb->prefix . 'fixtures ADD `active` int(11) NULL;';
             dbDelta($sql);

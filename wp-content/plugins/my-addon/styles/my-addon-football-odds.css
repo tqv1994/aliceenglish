@@ -1,0 +1,80 @@
+.my-addon-football-odds {
+    /* Accordion styles */
+}
+.my-addon-football-odds h3 {
+    margin: 0 0 0.5em;
+    font-weight: normal;
+}
+.my-addon-football-odds input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.my-addon-football-odds .row {
+    display: flex;
+}
+.my-addon-football-odds .row .col {
+    flex: 1;
+}
+.my-addon-football-odds .row .col:last-child {
+    margin-left: 1em;
+}
+.my-addon-football-odds .tabs {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+.my-addon-football-odds .tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+.my-addon-football-odds .tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: #2c3e50;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+}
+.my-addon-football-odds .tab-label:hover {
+    background: #1a252f;
+}
+.my-addon-football-odds .tab-label::after {
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all 0.35s;
+}
+.my-addon-football-odds .tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.35s;
+}
+.my-addon-football-odds .tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: #2c3e50;
+    cursor: pointer;
+}
+.my-addon-football-odds .tab-close:hover {
+    background: #1a252f;
+}
+.my-addon-football-odds input:checked + .tab-label {
+    background: #1a252f;
+}
+.my-addon-football-odds input:checked + .tab-label::after {
+    transform: rotate(90deg);
+}
+.my-addon-football-odds input:checked ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+ 

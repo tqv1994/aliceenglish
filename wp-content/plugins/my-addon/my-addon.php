@@ -32,6 +32,7 @@ function my_addon_styles() {
     wp_enqueue_style( 'my_addon_sidebar_menu',  MY_ADDON_DIR_STYLES_URL . '/my-addon-sidebar-menu.css','','1' );
     wp_enqueue_style( 'my_addon_tabs',  MY_ADDON_DIR_STYLES_URL . '/my-addon-tabs.css','','1' );
     wp_enqueue_style( 'my_addon_widget_bxh',  MY_ADDON_DIR_STYLES_URL . '/my-addon-widget-bxh.css','','1' );
+    wp_enqueue_style( 'my_addon_football-odds',  MY_ADDON_DIR_STYLES_URL . '/my-addon-football-odds.css','','1' );
 }
 // Khai báo js
 function my_addon_scripts(){
@@ -42,6 +43,8 @@ add_action( 'wp_enqueue_scripts', 'my_addon_styles' );
 include(MY_ADDON_SHORTCODE_PATH.'/my_addon_sidebar_menu.php');
 include(MY_ADDON_WIDGET_PATH.'/my_addon_tabs_widget.php');
 include(MY_ADDON_SHORTCODE_PATH.'/my_addon_tabs.php');
+        include(MY_ADDON_SHORTCODE_PATH.'/football_odds.php');
+
 
 if(in_array('football-leagues-by-anwppro/anwp-football-leagues.php', apply_filters('active_plugins', get_option('active_plugins')))){
     include(MY_ADDON_FUNCTION_PATH.'/football-leagues-by-anwppro.php');
