@@ -10,7 +10,7 @@ Author URI:
 
 register_activation_hook(__FILE__, 'football_video_activate');
 register_deactivation_hook(__FILE__, 'football_video_deactivate');
-
+require_once dirname(__FILE__).'/app/shortcode/football_play_list.php';
 function football_video_activate() {
     global $wp_rewrite;
     require_once dirname(__FILE__).'/football_video_loader.php';

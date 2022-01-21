@@ -8,138 +8,59 @@ function handleFootballPlayList($atts){
         'title' => '',
     ), $atts );
     $footballVideo = mvc_model('FootballVideo');
-    $videos = $footballVideo->find([
+    $data = $footballVideo->find([
         'conditions' => [
-            'data_date <=' => date('Y-m-d 00:00:00'),
-            'data_date >=' => date('Y-m-d 23:59:59')
+            'data_date >=' => date('Y-m-d 00:00:00'),
+            'data_date <=' => date('Y-m-d 23:59:59')
         ]
     ]);
+    $results = [];
+    $embeds = [];
+    foreach ($data as $item){
+        $videos = unserialize($item->videos);
+        foreach ($videos as $key => $video){
+            preg_match('/(?<=src=\').*?(?=[\?\'])/',$video->embed, $match);
+            $url = $match[0];
+            $results[] = [
+                'title' => $item->title.' '.(count($videos) > 1 ? $key+1 : ''),
+                'competition' => $video->competition,
+                'thumbnail' => $video->thumbnail,
+                'embed' => $url
+            ];
+            $embeds[] = $url;
+        }
+
+    }
     ob_start(); ?>
-    <div class="player-play-list">
-        <div class="container">
-            <div class="play-list">
-                <div class="options">
-                    <h4 class="name-play-list"><?=$title?>></h4>
-                    <div class="option">
-                        <div class="btn-option order">
-                            <span class="title">Shuffle</span>
-                            <i class="fa fa-random"></i>
-                        </div>
-                        <div class="btn-option repeat">
-                            <span class="title">Repeat Playlist</span>
-                            <i class="fa fa-retweet"></i>
-                        </div>
-                    </div>
-                </div>
-                <ul>
-                    <?php foreach ($videos as $video): ?>
-                    <?php $dataVideo = unserialize($video->data); ?>
-                        <?php if(is_array($dataVideo)): ?>
-                            <?php foreach ($dataVideo as $key => $item): ?>
-                                <li>
-                                    <div class="count"></div>
-                                    <video class="video-list"></video>
-                                    <div class="desc">
-                                        <h4 class="video-title"><?=$video->title.' '.(count($dataVideo) > 1 ? $key + 1: '')?></h4>
-                                        <p class="video-desc"><?=$video->competition?></p>
-                                    </div>
-                                    <div class="time"></div>
-                                </li>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="player">
-                <div class="overlay-play">
-                    <span><i class="fa fa-play"></i></span>
-                </div>
-                <div class="overlay-load">
-                    <div class="loading">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="viewEventNow"></div>
-                <video class="player-video viewer" preload="auto"></video>
-
-                <div class="show-title-video"></div>
-
-                <div class="player-controls">
-                    <div class="progress">
-                        <div class="progress-load"></div>
-                        <div class="progress-filled">
-                            <div class="progress-ball"></div>
-                        </div>
-                    </div>
-                    <div class="screen-move">
-                        <video class="video-move"></video>
-                        <div class="time-screen"></div>
-                    </div>
-                    <div class="btnPlay player-button"><i class="fa fa-play"></i></div>
-                    <div class="backward player-button"><i class="fa fa-backward"></i></div>
-                    <div class="forward player-button"><i class="fa fa-forward"></i></div>
-                    <div class="view-next-prev">
-                        <video></video>
-                        <div class="desc">
-                            <h4 class="video-title"></h4>
-                            <p class="video-desc"></p>
-                        </div>
-                        <div class="time"></div>
-                    </div>
-                    <div class="volume toggle">
-                    <span class="icon">
-                        <i class="fa fa-volume-up"></i>
-                        <i class="fa fa-close"></i>
-                    </span>
-                        <input type="range" tabindex="-1" name="volume" class="player-slider" min=0 max="1" step="0.05" value="0.5">
-                    </div>
-                    <div class="time"></div>
-
-                    <div class="player-option">
-                        <i class="fa fa-cog button-option"></i>
-                        <div class="option-item">
-
-                            <div class="autoplay row">
-                                <div class="title">Autoplay</div>
-                                <div class="func">
-                                    <div class="range-auto"><span></span></div>
-                                </div>
-                            </div>
-
-                            <div class="speed row">
-                                <div class="title-auto title">Speed</div>
-                                <div class="range-speed func">
-                                    <div class="cover-speed">
-                                        <input class="play-back-rate player-slider" type="range" tabindex="-1" name="playbackRate" min="0.5" max="2" step="0.5" value="1">
-                                        <div class="show-play-back">0.5</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="quality row">
-                                <div class="title">Quality</div>
-                                <div class="func">
-                                    <div class="range-quality"><span>HD</span></div>
-                                    <div class="auto-quality"><span class="click-active active">Auto<span></span></span></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="hide-controls">Hide</div>
-                    <div class="button-full-screen player-button"><i class="fa fa-expand"></i></div>
-                </div>
-            </div>
+    <div class="vid-main-wrapper clearfix">
+        <!-- THE YOUTUBE PLAYER -->
+        <div class="vid-container">
+            <iframe id="vid_frame" src="<?=$results[0]['embed']?>" frameborder="0" width="560" height="315"></iframe>
         </div>
+
+        <!-- THE PLAYLIST -->
+        <div class="vid-list-container">
+            <ol id="vid-list">
+                <?php foreach ($results as $video): ?>
+                <li>
+                    <a href="javascript:void();" onClick="document.getElementById('vid_frame').src='<?=$video['embed']?>'">
+                        <span class="vid-thumb"><img width=72 src="<?=$video['thumbnail']?>" /></span>
+                        <div class="desc"><?=$video['title']?>></div>
+                    </a>
+                </li>
+                <?php endforeach; ?>
+                </ol>
+        </div>
+
     </div>
     <?php
-    $html = ob_end_clean();
+    $html = ob_get_clean();
+    echo $html;
+    wp_register_style('mvc_football_video', mvc_css_url('football-video', 'style'),10);
+    wp_enqueue_style('mvc_football_video');
+    wp_register_script('mvc_football_video_js', mvc_js_url('football-video', 'script'),10);
+    wp_enqueue_script('mvc_football_video_js');
+    wp_register_script('jquery_nicescroll','https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js');
+    wp_enqueue_script('jquery_nicescroll');
 }
+add_shortcode( 'football_play_list', 'handleFootballPlayList' );
