@@ -7,4 +7,13 @@ jQuery(document).ready(function ($) {
             $('.vid-item:nth-child('+current_index+') .thumb').addClass('active');
         });
     });
+        $(".vid-list-container .vid-list").niceScroll({
+            cursorcolor: '#777',
+            background: '#CCC',
+            cursorwidth: '10px',
+            cursorborder: '0',
+            cursorborderradius: '1px',
+            autohidemode: true,
+            railalign: 'left'
+        });
 });

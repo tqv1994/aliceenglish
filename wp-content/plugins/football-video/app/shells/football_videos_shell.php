@@ -16,7 +16,7 @@ class FootballVideosShell extends MvcShell
         $url = "https://www.scorebat.com/video-api/v3/";
         $response = wp_remote_get($url);
         $data = json_decode($response['body']);
-        if (is_array($data->response)) {
+        if (isset($data->response) && is_array($data->response)) {
             foreach ($data->response as $item) {
                 $video = $this->FootballVideo->find_one_by_matchviewUrl($item->matchviewUrl);
                 if (is_null($video) || empty($video)) {

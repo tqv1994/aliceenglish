@@ -45,7 +45,7 @@ function handleFootballPlayList($atts){
                 <li>
                     <a href="javascript:void();" onClick="document.getElementById('vid_frame').src='<?=$video['embed']?>'">
                         <span class="vid-thumb"><img width=72 src="<?=$video['thumbnail']?>" /></span>
-                        <div class="desc"><?=$video['title']?>></div>
+                        <div class="desc"><?=$video['title']?></div>
                     </a>
                 </li>
                 <?php endforeach; ?>
@@ -58,9 +58,9 @@ function handleFootballPlayList($atts){
     echo $html;
     wp_register_style('mvc_football_video', mvc_css_url('football-video', 'style'),10);
     wp_enqueue_style('mvc_football_video');
-    wp_register_script('mvc_football_video_js', mvc_js_url('football-video', 'script'),10);
+    wp_register_script('mvc_football_video_js', mvc_js_url('football-video', 'script'),array( 'jquery' ));
     wp_enqueue_script('mvc_football_video_js');
-    wp_register_script('jquery_nicescroll','https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js');
+    wp_register_script('jquery_nicescroll','https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js',array( 'jquery' ));
     wp_enqueue_script('jquery_nicescroll');
 }
 add_shortcode( 'football_play_list', 'handleFootballPlayList' );

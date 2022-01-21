@@ -35,16 +35,17 @@ ol#vid-list {
     margin:0;
     padding:0;
     background: #222;
+    height: 100%;
 }
 
 ol#vid-list li {
     list-style: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 ol#vid-list li a {
     text-decoration: none;
     background-color: #222;
-    height:55px;
     display:block;
     padding:10px;
 }
